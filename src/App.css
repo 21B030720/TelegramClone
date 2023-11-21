@@ -1,0 +1,19 @@
+.tabBar {
+  position:fixed;
+  margin-left: 10%;
+  width: 20%;
+  height: 100%;
+  background-color: aqua;
+}
+.lenta  {
+  position: relative;
+  top: 0px;
+  margin-left: 31%;
+  width: 40%;
+  height: 300px;
+  background-color: bisque;
+}
+
+.ars {
+  
+}
