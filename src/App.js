@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {useEffect, useState} from 'react'
+import { getAllConversations } from './api/messenger';
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import List from './List';
+import Messages from './Messages';
+import FirebaseMessages from './FirebaseMessages';
+
+
+function Home() {
+  return (
+    <>
+      <div class="tabBar">
+
+      </div>
+      <div class="lenta">
+        <List />
+      </div>
+    </>
+  );
+  }
+  
+
 
 function App() {
+  const [conversationData, setConversationData] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getAllConversations();
+      setConversationData(data);
+      console.log(conversationData);
+    }
+    fetchData();
+  }, []) 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:id" element={<Messages />} />
+          <Route path="/firebase" element={<FirebaseMessages />} />
+          {/* <Route path="/help" element={<Help />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
