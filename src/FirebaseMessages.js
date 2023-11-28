@@ -10,8 +10,8 @@ export default function FirebaseMessages() {
     const CreateUser = async () => {
         await addDoc(UsersCollectionRef, { Name: name, age: age })
         window.location.reload()
-      }
-      useEffect(() => {
+    }
+    useEffect(() => {
         const getUsersData = async () => {
           const data = await getDocs(UsersCollectionRef)
           setUsers(data.docs.map((elem) => ({ ...elem.data(), id: elem.id })))

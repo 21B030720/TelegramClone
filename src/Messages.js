@@ -18,21 +18,27 @@ export default function Messages() {
         if(comment === 0) {
             
         } else {
-            setRole("user")
+            // setRole("user")
             // await addDoc(UsersCollectionRef, { role: role, comment: comment })
+            // window.location.reload()
+
+            // const {id} = await addDoc(UsersCollectionRef, { Name: "ars" })
+            // console.log("NEW ID", id)
             // window.location.reload()
 
             const userDoc = doc(db, "user", id)
             const userContractData = ["user:" + comment, "guest:" + comment]
-            await setDoc(userDoc,
-                { comment: arrayUnion(...userContractData) }
-                , {merge: true});
+            await setDoc(
+                userDoc,
+                { comment: arrayUnion(...userContractData) }, 
+                {merge: true}
+            );
 
             // const userDoc = doc(db, "user", id)
             // const addingElement = { 
             //     comment: ["user:" + comment]}
             // await updateDoc(userDoc, addingElement)
-            window.location.reload()
+            // window.location.reload()
         }
     }
 
@@ -48,7 +54,7 @@ export default function Messages() {
         //   setUsers(data.docs.map((elem) => ({ ...elem.data(), id: elem.id })))
         }
         getUsersData()
-    }, [])
+    }, [users])
 
     
   return (
